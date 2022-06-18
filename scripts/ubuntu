@@ -1,0 +1,114 @@
+#!/system/bin/sh
+# Software desenvolvido por Trevias Xk
+# Redes sociais:       treviasxk
+# Github:              https://github.com/treviasxk
+
+cmd=$1
+export bin=/system/bin
+export PATH=/usr/bin:/usr/sbin:/bin:/usr/local/bin:/usr/local/sbin:$PATH
+export TERM=linux
+export HOME=/root
+export USER=root
+export LOGNAME=root
+unset LD_PRELOAD
+localbuild="/data/local/tmp/ubuntu"
+
+banner (){
+    clear
+    echo " ============= UBUNTU TERMUX ROOT ============="
+    echo -e "\e[1m\e[32m ______  ___  ___ _    _ .   _   ___   _  _ _ _"
+    echo "   ||   |__/ |___  \  /  |  /_\  |__    \/  |/ "
+    echo "   ||   |  \ |___   \/   | /   \  __|  _/\_ |\_"
+    echo -e "\e[0m\e[39m ______________________________________________"
+    echo " REDES SOCIAIS:                       treviasxk"
+    echo " VERSÃO:                              1.0.3.0"
+    echo " LICENÇA:                             GPL-3.0"
+    echo " =============================================="
+}
+
+suuninstall (){
+  banner
+  echo -e "\e[30;48;5;82m STATUS \e[40;38;5;82m DESINSTALANDO UBUNTU... \e[0m"
+  if [ -d "$localbuild" ]
+  then
+    #mount -o rw,remount /data 2> /dev/null
+    rm -rf $localbuild 2> /dev/null
+    rm $PREFIX/bin/ubuntu 2> /dev/null
+  fi
+  echo -e "\e[30;48;5;82m STATUS \e[40;38;5;82m DESINSTALAÇÃO CONCLUÍDO! \e[0m"
+  exit
+}
+
+uninstall (){
+  banner
+  echo -e "\e[30;48;5;82m STATUS \e[40;38;5;82m DESINSTALANDO UBUNTU... \e[0m"
+  if [ -d "$localbuild" ]
+  then
+    #sudo mount -o rw,remount /data 2> /dev/null
+    sudo rm -rf $localbuild 2> /dev/null
+    rm $PREFIX/bin/ubuntu 2> /dev/null
+  fi
+  echo -e "\e[30;48;5;82m STATUS \e[40;38;5;82m DESINSTALAÇÃO CONCLUÍDO! \e[0m"
+  exit
+}
+
+
+if [ "$EUID" -ne 0 ]
+then
+  case $cmd in
+    "")
+      #vazio
+    ;;
+    "-u")
+      suuninstall
+    ;;
+    "--uninstall")
+      suuninstall
+    ;;
+    *)
+      echo -e "\e[30;48;5;82m STATUS \e[40;38;5;82m COMANDO INVALIDO! \e[0m"
+      exit
+    ;;
+  esac
+  setenforce 0
+  #mount -o remount,suid /data 2> /dev/null
+  mountpoint -q $localbuild/dev 2> /dev/null
+  mount -o bind /dev $localbuild/dev 2> /dev/null
+  mount -t devpts devpts $localbuild/dev/pts 2> /dev/null
+  mount -t proc proc $localbuild/proc 2> /dev/null
+  mount -t sysfs sysfs $localbuild/sys 2> /dev/null
+  mount -t tmpfs none $localbuild/tmp 2> /dev/null
+  #chmod 666 /dev/null
+
+  clear
+  chroot $localbuild /bin/login -f root
+else
+  case $cmd in
+    "")
+      #vazio
+    ;;
+    "-u")
+      uninstall
+    ;;
+    "--uninstall")
+      uninstall
+    ;;
+    *)
+      echo -e "\e[30;48;5;82m STATUS \e[40;38;5;82m COMANDO INVALIDO! \e[0m"
+      exit
+    ;;
+  esac
+  sudo setenforce 0
+  sudo mount -o remount,suid /data 2> /dev/null
+  sudo mountpoint -q $localbuild/dev 2> /dev/null
+  sudo mount -o bind /dev $localbuild/dev 2> /dev/null
+  sudo mount -t devpts devpts $localbuild/dev/pts 2> /dev/null
+  sudo mount -t proc proc $localbuild/proc 2> /dev/null
+  sudo mount -t sysfs sysfs $localbuild/sys 2> /dev/null
+  sudo mount -t tmpfs none $localbuild/tmp 2> /dev/null
+  #sudo chmod 666 /dev/null
+
+
+  clear
+  sudo chroot $localbuild /bin/login -f root
+fi
