@@ -1,7 +1,7 @@
 #!/system/bin/sh
 # Software desenvolvido por Trevias Xk
-# Redes sociais:       treviasxk
-# Github:              https://github.com/treviasxk
+# Redes sociais:       B4gol
+# Github:              https://github.com/B4gol
 
 localbuild="/data/local/tmp/ubuntu"
 
@@ -12,17 +12,17 @@ banner (){
     echo "   ||   |__/ |___  \  /  |  /_\  |__    \/  |/ "
     echo "   ||   |  \ |___   \/   | /   \  __|  _/\_ |\_"
     echo -e "\e[0m\e[39m ______________________________________________"
-    echo " REDES SOCIAIS:                       treviasxk"
-    echo " VERSÃO:                              1.0.3.0"
-    echo " LICENÇA:                             GPL-3.0"
+    echo " TELEGRAM:                       @B4gol"
+    echo " VERSION:                              1.0.3.0"
+    echo " LICENSE:                             GPL-3.0"
     echo " =============================================="
 }
 banner
-echo -e "\e[30;48;5;82m STATUS \e[40;38;5;82m PREPARANDO... \e[0m"
+echo -e "\e[30;48;5;82m STATUS \e[40;38;5;82m PREPARING... \e[0m"
 
 if [ "$EUID" -ne 0 ]
 then
-    #Ferramentas necessários no Termux para instalar o ubuntu
+    #Tools needed in Termux to install ubuntu
     pkg up -y -qq
     pkg install tsu -y -qq
     pkg install git -y -qq
@@ -31,7 +31,7 @@ then
 
     #sudo mount -o rw,remount /data 2> /dev/null
 
-    #Verificando arquitetura do dispositivo
+    #Checking device architecture
     case `dpkg --print-architecture` in
 		aarch64)
 			archurl="arm64" ;;
@@ -48,27 +48,27 @@ then
     banner
     echo -e "\e[30;48;5;82m STATUS \e[40;38;5;82m BAIXANDO DATA... \e[0m"
 
-    #Baixando arquivos obrigatório para um bom funcionamento
+    #Downloading files required for proper functioning
     git clone https://github.com/treviasxk/UbuntuTermuxRoot
     cd UbuntuTermuxRoot
 
     banner
     echo -e "\e[30;48;5;82m STATUS \e[40;38;5;82m BAIXANDO UBUNTU BASE 21.10... \e[0m"
 
-    #Baixando o Ubuntu Base 21.10 de acordo com a arquitetura
+    #Downloading Ubuntu Base 21.10 as per architecture
     wget "https://cdimage.ubuntu.com/ubuntu-base/releases/21.10/release/ubuntu-base-21.10-base-$archurl.tar.gz" -O ubuntu-base.tar.gz
 
     banner
     echo -e "\e[30;48;5;82m STATUS \e[40;38;5;82m INSTALANDO... \e[0m"
 
-    #Criando pastas no sistema
-    sudo mkdir -p $localbuild                                    #Pasta para instalação do ubuntu
-    sudo mkdir -p $localbuild/dev                                #Pasta para recursos adicionais do ubuntu
+    #Creating folders on the system
+    sudo mkdir -p $localbuild                                    #Folder for ubuntu installation
+    sudo mkdir -p $localbuild/dev                                #Folder for additional ubuntu resources
 
-    #Extraindo sistema ubuntu na pasta criado no sistema
+    #Extracting ubuntu system into created folder in system
     sudo tar -xzf ./ubuntu-base.tar.gz --exclude='dev' -C $localbuild
     
-    #Alterando permissões de arquivos
+    #Changing file permissions
     chmod 777 ./scripts/ubuntu
     chmod 644 ./scripts/passwd
     chmod 644 ./scripts/resolv.conf
@@ -78,24 +78,24 @@ then
     chmod 640 ./scripts/gshadow
     chmod 755 ./scripts/adduser
 
-    #Configurações necessário para o funcionamento do Ubuntu
-    sudo mv ./scripts/resolv.conf $localbuild/etc                #Adicionando DNS
-    sudo mv ./scripts/hosts $localbuild/etc                      #Adicionando domínios locais
-    sudo mv ./scripts/group $localbuild/etc                      #Permissões dos grupos
-    sudo mv ./scripts/passwd $localbuild/etc                     #Permissões do usuário
-    sudo mv ./scripts/shadow $localbuild/etc                     #Segurança das informações da conta
-    sudo mv ./scripts/gshadow $localbuild/etc                    #Segurança das informações dos grupos
-    sudo mv ./scripts/adduser $localbuild/sbin                   #Script personalizado, para corrigir internet
-    mv ./scripts/ubuntu $PREFIX/bin                              #Atalho para iniciar o ubuntu
+    #Settings required for Ubuntu to work
+    sudo mv ./scripts/resolv.conf $localbuild/etc                #Adding DNS
+    sudo mv ./scripts/hosts $localbuild/etc                      #Adding local domains
+    sudo mv ./scripts/group $localbuild/etc                      #group permissions
+    sudo mv ./scripts/passwd $localbuild/etc                     #user permissions
+    sudo mv ./scripts/shadow $localbuild/etc                     #Account information security
+    sudo mv ./scripts/gshadow $localbuild/etc                    #Group information security
+    sudo mv ./scripts/adduser $localbuild/sbin                   #Custom script, to fix internet
+    mv ./scripts/ubuntu $PREFIX/bin                              #Shortcut to launch ubuntu
 
-    #Limpando instalação
+    #cleaning installation
     rm -rf ../UbuntuTermuxRoot
     rm ../install
 
     banner
-    echo -e "\e[30;48;5;82m STATUS \e[40;38;5;82m INSTALADO COM SUCESSO! \e[0m"
-    echo "Use o comando 'ubuntu' para iniciar o sistema."
+    echo -e "\e[30;48;5;82m STATUS \e[40;38;5;82m SUCCESSFULLY INSTALLED! \e[0m"
+    echo "Use 'ubuntu' command to boot the system."
 else
     banner
-    echo "Instalação não funciona diretamente pela raiz"
+    echo "Installation does not work directly from the root"
 fi
