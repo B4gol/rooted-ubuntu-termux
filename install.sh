@@ -1,5 +1,5 @@
 #!/system/bin/sh
-# Software desenvolvido por Trevias Xk
+# Software developed by ivansuselo@gmail.com
 # Redes sociais:       B4gol
 # Github:              https://github.com/B4gol
 
