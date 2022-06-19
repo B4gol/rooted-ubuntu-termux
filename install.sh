@@ -49,8 +49,8 @@ then
     echo -e "\e[30;48;5;82m STATUS \e[40;38;5;82m DOWNLOADING DATA... \e[0m"
 
     #Downloading files required for proper functioning
-    git clone https://github.com/treviasxk/UbuntuTermuxRoot
-    cd UbuntuTermuxRoot
+    git clone https://github.com/B4gol/rooted-ubuntu-termux
+    cd rooted-ubuntu-termux
 
     banner
     echo -e "\e[30;48;5;82m STATUS \e[40;38;5;82m DOWNLOADING UBUNTU BASE 21.10... \e[0m"
