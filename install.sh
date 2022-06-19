@@ -7,7 +7,7 @@ localbuild="/data/local/tmp/ubuntu"
 
 banner (){
     clear
-    echo " ============= UBUNTU TERMUX ROOT ============="
+    echo " ============= Rooted Ubuntu Termux ============="
     echo -e "\e[1m\e[32m ______  ___  ___ _    _ .   _   ___   _  _ _ _"
     echo "   ||   |__/ |___  \  /  |  /_\  |__    \/  |/ "
     echo "   ||   |  \ |___   \/   | /   \  __|  _/\_ |\_"
@@ -42,24 +42,24 @@ then
 		x86_64)
 			archurl="amd64" ;;
 		*)
-		echo "Arquitetura desconhecida"; exit 1;;
+		echo "unknown architecture"; exit 1;;
 	esac
 
     banner
-    echo -e "\e[30;48;5;82m STATUS \e[40;38;5;82m BAIXANDO DATA... \e[0m"
+    echo -e "\e[30;48;5;82m STATUS \e[40;38;5;82m DOWNLOADING DATA... \e[0m"
 
     #Downloading files required for proper functioning
     git clone https://github.com/treviasxk/UbuntuTermuxRoot
     cd UbuntuTermuxRoot
 
     banner
-    echo -e "\e[30;48;5;82m STATUS \e[40;38;5;82m BAIXANDO UBUNTU BASE 21.10... \e[0m"
+    echo -e "\e[30;48;5;82m STATUS \e[40;38;5;82m DOWNLOADING UBUNTU BASE 21.10... \e[0m"
 
     #Downloading Ubuntu Base 21.10 as per architecture
     wget "https://cdimage.ubuntu.com/ubuntu-base/releases/21.10/release/ubuntu-base-21.10-base-$archurl.tar.gz" -O ubuntu-base.tar.gz
 
     banner
-    echo -e "\e[30;48;5;82m STATUS \e[40;38;5;82m INSTALANDO... \e[0m"
+    echo -e "\e[30;48;5;82m STATUS \e[40;38;5;82m INSTALLATION... \e[0m"
 
     #Creating folders on the system
     sudo mkdir -p $localbuild                                    #Folder for ubuntu installation
