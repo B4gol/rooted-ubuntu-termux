@@ -1,7 +1,7 @@
 # Ubuntu Termux Root
 Install Ubuntu Base 21.10 on the root of your smartphone with termux. To start the system, use the command `ubuntu`.
 
-## AVISO!
+## Warning!
 Install it yourself, I will not be responsible for any damage that may happen to your device.
 ## Request
 • Magisk
