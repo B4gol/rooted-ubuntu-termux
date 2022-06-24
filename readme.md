@@ -17,7 +17,7 @@ First stop all services and exit ubuntu with command `exit` then close termux, t
 ```bash
 ubuntu -u
 ```
-Ou
+Or
 ```bash
 ubuntu --uninstall
 ```
