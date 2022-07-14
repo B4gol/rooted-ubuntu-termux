@@ -10,7 +10,7 @@ Install it yourself, I will not be responsible for any damage that may happen to
 ## Installation
 Enter the shell command below in Termux to be able to install.
 ```bash
-curl -s -L https://raw.githubusercontent.com/B4gol/rooted-ubuntu-termux/master/install.sh -o install && bash install
+curl -s -L https://raw.githubusercontent.com/b4gol/rooted-ubuntu-termux/master/install.sh -o install && bash install
 ```
 ## Uninstall
 First stop all services and exit ubuntu with command `exit` then close termux, then enter the shell command below in Termux to be able to uninstall. If not, restart your smartphone and start the code again.
