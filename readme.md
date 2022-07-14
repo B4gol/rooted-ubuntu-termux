@@ -26,4 +26,4 @@ If you can't do the `apt upgrade`, this problem happens due to ubuntu not recogn
 ```bash
 apt-mark hold libc6
 ```
-NextGen: https://t.me/B4gol
+NextGen: https://t.me/b4gol
