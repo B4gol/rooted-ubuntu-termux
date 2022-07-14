@@ -1,7 +1,7 @@
 #!/system/bin/sh
 # Software developed by ivansuselo@gmail.com
-# Redes sociais:       B4gol
-# Github:              https://github.com/B4gol
+# Redes sociais:       b4gol
+# Github:              https://github.com/b4gol
 
 localbuild="/data/local/tmp/ubuntu"
 
